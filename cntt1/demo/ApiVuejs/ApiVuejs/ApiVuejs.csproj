@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>ApiVuejs</AssemblyName>
+    <RootNamespace>ApiVuejs</RootNamespace>
+    <Title>ApiVuejs</Title>
+    <PackageId>ApiVuejs</PackageId>
+    <Product>ApiVuejs</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.16" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="photos\" />
+  </ItemGroup>
+
+
+</Project>
