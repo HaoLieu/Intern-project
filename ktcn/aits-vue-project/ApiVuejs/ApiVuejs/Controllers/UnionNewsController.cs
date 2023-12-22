@@ -112,10 +112,10 @@ namespace ApiVuejs.Controllers
                     myCommand.Parameters.AddWithValue("@dateTimeUpload", uns.dateTimeUpload);
                     myCommand.Parameters.AddWithValue("@views", uns.views);
                     myCommand.Parameters.AddWithValue("@author", uns.author);
-                    myCommand.Parameters.AddWithValue("@description", uns.description);
-                    myCommand.Parameters.AddWithValue("@img", uns.img);
                     myCommand.Parameters.AddWithValue("@note", uns.note);
                     myCommand.Parameters.AddWithValue("@rest", uns.rest);
+                    myCommand.Parameters.AddWithValue("@description", uns.description);
+                    myCommand.Parameters.AddWithValue("@img", uns.img);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();

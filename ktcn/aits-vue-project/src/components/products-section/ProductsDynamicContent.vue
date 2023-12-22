@@ -26,9 +26,7 @@
       v-if="selectedComponent === 'tech-advices'"
       :close="closeComponent"
     ></TechAdvices>
-
   </div>
-
 </template>
 
 <script>

@@ -57,6 +57,7 @@ export default {
     },
     submitForm () {
       if (this.username === 'admin' && this.password === 'admin123') {
+        this.$store.state.loginRouteGuard = true
         return true
       }
     }
@@ -66,9 +67,6 @@ export default {
 
 <style scoped>
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 

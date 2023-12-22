@@ -43,6 +43,12 @@ export default {
     FloatingNav
   },
   props: ['id'],
+  data () {
+    return {
+      vnas: [],
+      detail: false
+    }
+  },
   computed: {
     vnaNews () {
       return this.$store.getters['vnAirlinesNews/vnAirlinesNewsData']
@@ -51,6 +57,21 @@ export default {
       return this.vnaNews.find(d => d.vnaId === Number(this.id))
     }
   }
+  // methods: {
+  //   refreshedData () {
+  //     console.log('axios')
+  //     axios.get('http://localhost:9513/api/vnAirlinesNews').then((response) => {
+  //       this.vnas = response.data
+  //     })
+  //     const that = this
+  //     setTimeout(function () {
+  //       that.detail = true
+  //     }, 500)
+  //   }
+  // },
+  // mounted () {
+  //   this.refreshedData()
+  // }
 }
 </script>
 
@@ -70,10 +91,10 @@ export default {
 a {
   text-decoration: none;
   color: white;
-  font-size: 20px;
+  font-size: 21px;
   transition: ease .40s;
   margin-right: 50px;
-  padding: 5px 0px;
+  padding: 6px 0px;
 }
 
 #chosen {

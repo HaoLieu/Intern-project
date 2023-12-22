@@ -59,7 +59,9 @@ export default {
   props: ['id'],
   data () {
     return {
-      latestSportCulNews: latestSportCulNews
+      latestSportCulNews: latestSportCulNews,
+      spCul: [],
+      detail: false
     }
   },
   computed: {
@@ -70,6 +72,21 @@ export default {
       return this.sportCultureNews.find(d => d.scId === Number(this.id))
     }
   }
+  // methods: {
+  //   refreshedData () {
+  //     console.log('axios')
+  //     axios.get('http://localhost:9513/api/sportCultureNews').then((response) => {
+  //       this.spCul = response.data
+  //     })
+  //     const that = this
+  //     setTimeout(function () {
+  //       that.detail = true
+  //     }, 500)
+  //   }
+  // },
+  // mounted () {
+  //   this.refreshedData()
+  // }
 }
 </script>
 
@@ -89,10 +106,10 @@ export default {
 a {
   text-decoration: none;
   color: white;
-  font-size: 20px;
+  font-size: 21px;
   transition: ease .40s;
   margin-right: 50px;
-  padding: 5px 0px;
+  padding: 6px 0px;
 }
 
 #chosen {

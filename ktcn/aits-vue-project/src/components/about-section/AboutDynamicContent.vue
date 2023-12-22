@@ -1,8 +1,9 @@
 <template>
+  <div class="line-container">
   <div class="dynamic-content">
-      <button class="icon-container" @click="setSelectedComponent('foundation-history')">
+      <button class="icon-container" :class="{focus: isfocus1}" @click="setSelectedComponent('foundation-history')">
         <div class="icon">
-          <svg width="48" height="50" fill="#a1a1a1" xmlns="http://www.w3.org/2000/svg">
+          <svg width="48" height="50" :fill="[isfocus1 ? '#FFFFFF' : '#a1a1a1']" xmlns="http://www.w3.org/2000/svg">
             <path d="M36.6 33.266c-1.007 0-1.802-.012-2.683.01a11.059 11.059 0 00-8.372-6.212v-4.27c2.884-.045 8.737-.785 13.48-5.526 6.422-6.424 5.502-14.887 5.459-15.244A1.579 1.579 0 0043.102.64C42.744.6 34.28-.322 27.858 6.101a18.267 18.267 0 00-3.65 5.217C21.583 5.048 15.385.63 8.174.63H5.016a1.58 1.58 0 00-1.579 1.58v3.158c0 9.578 7.793 17.37 17.37 17.37h1.58v4.327c-3.621.53-6.78 2.86-8.368 6.201h-2.686c-3.166 0-6.072 1.293-8.18 3.64C1.356 38.903.285 41.509.285 43.877c0 3.038 1.81 5.18 4.73 5.18h37.9c2.998 0 4.798-2.155 4.798-5.142 0-4.657-4.263-10.649-11.115-10.649zM30.09 8.335c2.215-2.215 4.997-3.656 8.27-4.282a17.888 17.888 0 013.028-.316 17.888 17.888 0 01-.316 3.027c-.627
             3.273-2.067 6.056-4.282 8.27-2.389 2.39-5.41 3.841-8.849 4.382l6.616-6.615a1.58 1.58 0 10-2.233-2.233l-6.616 6.615c.541-3.437 1.992-6.458 4.382-8.848zm-14.483 2.233a1.58 1.58 0 10-2.233 2.233l6.763 6.763C12.61 19.213 6.596 12.98 6.596 5.368v-1.58h1.579c7.612 0 13.845 6.016 14.196 13.543l-6.763-6.763zm27.308 35.331h-37.9c-1.18 0-1.572-.795-1.572-2.022 0-1.586.788-3.448 2.057-4.86 1.063-1.183 2.937-2.593 5.832-2.593h3.739c.668 0 1.264-.42 1.488-1.05 1.12-3.15 4.096-5.266 7.406-5.266 2.674 0 5.121 1.376 6.557 3.562a11.001 11.001 0 00-5.164 3.19 1.58 1.58 0 002.326 2.136c.969-1.055 2.59-2.344 4.982-2.583.1.014 2.514-.01 3.932-.01 5.298 0 7.956 4.824 7.956 7.512 0 1.51-.643 1.984-1.64 1.984z"></path>
           </svg>
@@ -10,9 +11,9 @@
         <p>Lịch sử hình thành</p>
       </button>
 
-    <button class="icon-container" @click="setSelectedComponent('executive-board')">
+    <button class="icon-container" :class="{ focus: isfocus2 }" @click="setSelectedComponent('executive-board')">
       <div class="icon">
-        <svg width="50" height="50" fill="#a1a1a1" xmlns="http://www.w3.org/2000/svg">
+        <svg width="50" height="50" :fill="[isfocus2 ? '#FFFFFF' : '#a1a1a1']" xmlns="http://www.w3.org/2000/svg">
           <g>
             <path d="M46.094 19.986a1.195 1.195 0 100-2.39 1.195 1.195 0 000 2.39z" stroke-width=".5"></path>
             <mask id="a" maskUnits="userSpaceOnUse" x="-.187" y=".811" width="50" height="48">
@@ -26,9 +27,9 @@
       <p>Ban điều hành</p>
     </button>
 
-    <button class="icon-container" @click="setSelectedComponent('aits-achievement')">
+    <button class="icon-container" :class=" { focus: isfocus3 }" @click="setSelectedComponent('aits-achievement')">
       <div class="icon">
-        <svg width="49" height="50" fill="#a1a1a1" xmlns="http://www.w3.org/2000/svg">
+        <svg width="49" height="50" :fill="[isfocus3 ? '#FFFFFF' : '#a1a1a1']" xmlns="http://www.w3.org/2000/svg">
           <g>
             <mask id="a" maskUnits="userSpaceOnUse" x="-.921" y="-.294" width="50" height="50">
               <path d="M-.921-.294h50v50h-50z"></path>
@@ -39,6 +40,12 @@
       </div>
       <p>Thành tựu AITS</p>
     </button>
+  </div>
+  <div class="center">
+    <div class="line">
+      <div class="animated-line" :class="{animate1: animatedLine1, animate2: animatedLine2, animate3: animatedLine3 }"></div>
+    </div>
+  </div>
   </div>
 
   <component :is="selectedComponent"></component>
@@ -59,12 +66,53 @@ export default {
   },
   data () {
     return {
-      selectedComponent: 'foundation-history'
+      selectedComponent: 'foundation-history',
+      isfocus1: true,
+      isfocus2: false,
+      isfocus3: false,
+      animatedLine1: false,
+      animatedLine2: false,
+      animatedLine3: false,
+      stage1: false
     }
+  },
+  computed: {
+
   },
   methods: {
     setSelectedComponent (cpn) {
       this.selectedComponent = cpn
+
+      if (cpn === 'foundation-history') {
+        this.isfocus1 = true
+      } else {
+        this.isfocus1 = false
+      }
+
+      if (cpn === 'executive-board') {
+        if (this.stage1 === true) {
+          this.isfocus2 = true
+          this.animatedLine3 = true
+          this.stage1 = false
+        } else {
+          this.isfocus2 = true
+          this.animatedLine1 = true
+        }
+      } else {
+        this.isfocus2 = false
+        this.animatedLine1 = false
+        this.animatedLine3 = false
+        this.stage1 = false
+      }
+
+      if (cpn === 'aits-achievement') {
+        this.isfocus3 = true
+        this.animatedLine2 = true
+        this.stage1 = true
+      } else {
+        this.isfocus3 = false
+        this.animatedLine2 = false
+      }
     }
   }
 }
@@ -81,16 +129,42 @@ export default {
   .icon-container {
     width:125px;
     height:125px;
-    border: 2px solid #e5e7eb;
+    border: none;
     border-radius: 50%;
     background: #e5e7eb;
     box-shadow: 0 0 3px #e5e7eb;
     margin: 5px 60px 55px;
     cursor: pointer;
+    z-index: 3;
   }
 
-  .icon-container:focus {
+  .line-container {
+    position: relative;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .focus {
     background: #ffc529;
+  }
+
+  .line {
+    background: #9ca3af;
+    width: 719px;
+    height: 10px;
+    position: absolute;
+    top: 65px;
+    z-index: 1;
+  }
+
+  .animated-line {
+    width: 150px;
+    height: 10px;
+    background: #ffc529;
+    z-index: 2;
   }
 
   .icon {
@@ -117,6 +191,48 @@ export default {
 
   p {
     padding: 15px 0;
-    font-size: 14px
+    font-size: 13px
   }
+
+  .animate1 {
+  animation: ex-board 0.2s ease-out forwards;
+}
+
+@keyframes ex-board {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+
+  100% {
+    transform: translateX(82px) scaleX(2.1);
+  }
+}
+
+.animate2 {
+  animation: aits 0.2s ease-out forwards;
+}
+
+@keyframes aits {
+  0% {
+    transform: translateX(82px) scaleX(2.1);
+  }
+
+  100% {
+    transform: translateX(285px) scaleX(4.8);
+  }
+}
+
+.animate3 {
+  animation: ex-board2 0.2s ease-out forwards;
+}
+
+@keyframes ex-board2 {
+  0% {
+     transform: translateX(285px) scaleX(4.8);
+  }
+
+  100% {
+    transform: translateX(82px) scaleX(2.1);
+  }
+}
 </style>

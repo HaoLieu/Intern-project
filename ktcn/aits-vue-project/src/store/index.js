@@ -53,7 +53,8 @@ const store = createStore({
           name: 'Quan hệ cổ đông',
           link: '/shareholder'
         }
-      ]
+      ],
+      loginRouteGuard: false
     }
   }
   // mutations: {

@@ -80,21 +80,58 @@
                   <textarea type="text" class="form-control" v-model="title"></textarea>
                 </div>
 
-                <div class="input-group mb-3" style="height: 44.5%;">
-                  <span class="input-group-text">Description</span>
-                  <textarea type="text" class="form-control" v-model="description"></textarea>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Origin</span>
+                  <input type="text" class="form-control" v-model="origin">
                 </div>
 
                 <div class="input-group mb-3">
-                  <span class="input-group-text">dateUpload</span>
-                  <input type="text" class="form-control" v-model="dateUpload">
+                  <span class="input-group-text">Author</span>
+                  <input type="text" class="form-control" v-model="author">
                 </div>
+
+                <div class="input-group mb-3"  style="height: 150px;">
+                  <span class="input-group-text">Des</span>
+                  <textarea type="text" class="form-control" v-model="description"></textarea>
+                </div>
+
+                <div class="input-group mb-3"  style="height: 150px;">
+                  <span class="input-group-text">Rest</span>
+                  <textarea type="text" class="form-control" v-model="rest"></textarea>
+                </div>
+
               </div>
 
               <div class="p-2 w-50 bd-highlight">
                 <img v-if="unionId != 0" :src="`http://localhost:9513/photos/` + img"
                   style="width: 200px; height: 200px;" />
                 <input class="m-2" type="file" @change="imageUpload">
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Url</span>
+                  <input type="text" class="form-control" v-model="url">
+                </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Views</span>
+                    <input type="text" class="form-control" v-model="views">
+                  </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Note</span>
+                  <input type="text" class="form-control" v-model="note">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">DateUpload</span>
+                    <input type="text" class="form-control" v-model="dateUpload">
+                  </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">DateTimeUpload</span>
+                    <input type="text" class="form-control" v-model="dateTimeUpload">
+                  </div>
+
               </div>
             </div>
 
@@ -109,6 +146,7 @@
 
 <script>
 import axios from 'axios'
+import store from '@/store/index.js'
 
 export default {
   data () {
@@ -117,8 +155,15 @@ export default {
       modalTitle: '',
       unionId: 0,
       title: '',
-      description: '',
+      origin: '',
+      url: '',
+      dateTimeUpload: '',
+      views: '',
+      author: '',
+      note: '',
+      rest: '',
       dateUpload: '',
+      description: '',
       img: ''
     }
   },
@@ -132,6 +177,13 @@ export default {
       this.modalTitle = 'Add Destiantion'
       this.unionId = 0
       this.title = ''
+      this.origin = ''
+      this.url = 'UnionNewsDetail'
+      this.dateTimeUpload = ''
+      this.views = 0
+      this.author = 'Super Admin'
+      this.note = ''
+      this.rest = ''
       this.description = ''
       this.dateUpload = ''
       this.img = ''
@@ -139,6 +191,13 @@ export default {
     createClick () {
       axios.post('http://localhost:9513/api/unionNews', {
         title: this.title,
+        origin: this.origin,
+        url: this.url,
+        dateTimeUpload: this.dateTimeUpload,
+        views: this.views,
+        author: this.author,
+        note: this.note,
+        rest: this.rest,
         description: this.description,
         img: this.img,
         dateUpload: this.dateUpload
@@ -151,6 +210,13 @@ export default {
       this.modalTitle = 'Edit unionNews'
       this.unionId = union.unionId
       this.title = union.title
+      this.origin = union.origin
+      this.url = union.url
+      this.dateTimeUpload = union.dateTimeUpload
+      this.views = union.views
+      this.author = union.author
+      this.note = union.note
+      this.rest = union.rest
       this.description = union.description
       this.dateUpload = union.dateUpload
       this.img = union.img
@@ -159,9 +225,16 @@ export default {
       axios.put('http://localhost:9513/api/unionNews', {
         unionId: this.unionId,
         title: this.title,
+        origin: this.origin,
+        url: this.url,
+        dateTimeUpload: this.dateTimeUpload,
+        views: this.views,
+        author: this.author,
+        note: this.note,
+        rest: this.rest,
         description: this.description,
-        dateUpload: this.dateUpload,
-        img: this.img
+        img: this.img,
+        dateUpload: this.dateUpload
       }).then((response) => {
         this.refreshedData()
         alert(response.data)
@@ -186,14 +259,16 @@ export default {
         this.img = response.data
       })
     }
-
-    // printout () {
-    //   const variables = this.variables
-    //   console.log(variables[0].API_URL)
-    // }
   },
   mounted: function () {
     this.refreshedData()
+  },
+  beforeRouteEnter (to, from, next) {
+    if (store.state.loginRouteGuard === false) {
+      next(false)
+    } else {
+      next()
+    }
   }
 }
 </script>

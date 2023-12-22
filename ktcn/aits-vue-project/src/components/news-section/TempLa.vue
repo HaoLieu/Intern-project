@@ -11,27 +11,14 @@
 
   <div class="content">
     <div class="description">
-        <!-- v-if="detail" -->
-        <DetailInfo
-          :from="selectedUnion.origin"
-          :title="selectedUnion.title"
-          :time="selectedUnion.dateTimeUpload"
-          :author="selectedUnion.author"
-          :description1="selectedUnion.description"
-          :img1="selectedUnion.img"
-          :note1="selectedUnion.note"
-          :rest="selectedUnion.rest"
-        ></DetailInfo>
-      </div>
+      <DetailInfo :from="selectedUnion.origin" :title="selectedUnion.title" :time="selectedUnion.dateTimeUpload"
+        :author="selectedUnion.author" :description1="selectedUnion.description" :img1="selectedUnion.img"
+        :note1="selectedUnion.note" :rest="selectedUnion.rest"></DetailInfo>
+    </div>
     <div class="floating-nav">
       <ul>
-        <FloatingNav
-          v-for="latestUnionNew in unionNews"
-          :key="latestUnionNew.unionId"
-          :url="latestUnionNew.url"
-          :id="latestUnionNew.unionId"
-          :title="latestUnionNew.title"
-        ></FloatingNav>
+        <FloatingNav v-for="latestUnionNew in unionNews" :key="latestUnionNew.unionId" :url="latestUnionNew.url"
+          :id="latestUnionNew.unionId" :title="latestUnionNew.title"></FloatingNav>
       </ul>
     </div>
   </div>
@@ -42,7 +29,7 @@
 <script>
 import DetailInfo from './DetailInfo.vue'
 import FloatingNav from './FloatingNav.vue'
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
   components: {
@@ -52,60 +39,57 @@ export default {
   props: ['id'],
   data () {
     return {
-      unions: [],
-      detail: false
+      unions: []
     }
   },
   computed: {
     unionNews () {
+      console.log('method')
+      console.log(this.unions)
       return this.$store.getters['unionNews/UnionNewsData']
     },
     selectedUnion () {
       return this.unionNews.find(d => d.unionId === Number(this.id))
     }
-
+  },
+  methods: {
+    refreshedData () {
+      console.log('axios')
+      axios.get('http://localhost:9513/api/unionNews').then((response) => {
+        this.unions = response.data
+      })
+    }
   }
-  // methods: {
-  //   refreshedData () {
-  //     console.log('axios')
-  //     axios.get('http://localhost:9513/api/unionNews').then((response) => {
-  //       this.unions = response.data
-  //     })
-  //     const that = this
-  //     setTimeout(function () {
-  //       that.detail = true
-  //     }, 500)
-  //   },
-  //   log () {
-  //     console.log(this.selectedUnion)
-  //   }
-  // },
-  // mounted () {
+  // created () {
+  //   console.log('created')
+  //   console.log(this.unions)
   //   this.refreshedData()
+  //   console.log('created1')
+  //   console.log(this.unions)
   // }
 }
 </script>
 
 <style scoped>
 .location {
-    margin-top: 20px;
-    background-color: #fbbf24;
-    padding: 5px 0px;
-    position: relative;
-    height: 40px;
-  }
+  margin-top: 20px;
+  background-color: #fbbf24;
+  padding: 5px 0px;
+  position: relative;
+  height: 40px;
+}
 
-  .position {
-    position: absolute;
-  }
+.position {
+  position: absolute;
+}
 
 a {
   text-decoration: none;
   color: white;
-  font-size: 21px;
+  font-size: 20px;
   transition: ease .40s;
   margin-right: 50px;
-  padding: 6px 0px;
+  padding: 5px 0px;
 }
 
 #chosen {

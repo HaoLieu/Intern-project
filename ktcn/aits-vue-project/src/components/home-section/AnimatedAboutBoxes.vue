@@ -64,7 +64,6 @@ export default {
         y: 0,
         opacity: 1,
         duration: 2
-        // ease: 'bounce.out'
       })
     }
     return { beforeEnter, enterTitle }

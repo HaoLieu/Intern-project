@@ -106,7 +106,7 @@ namespace ApiVuejs.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@aitsId", uns.scId);
+                    myCommand.Parameters.AddWithValue("@scId", uns.scId);
                     myCommand.Parameters.AddWithValue("@origin", uns.origin);
                     myCommand.Parameters.AddWithValue("@title", uns.title);
                     myCommand.Parameters.AddWithValue("@url", uns.url);
@@ -115,10 +115,10 @@ namespace ApiVuejs.Controllers
                     myCommand.Parameters.AddWithValue("@sport", uns.sport);
                     myCommand.Parameters.AddWithValue("@views", uns.views);
                     myCommand.Parameters.AddWithValue("@author", uns.author);
-                    myCommand.Parameters.AddWithValue("@description", uns.description);
-                    myCommand.Parameters.AddWithValue("@img", uns.img);
                     myCommand.Parameters.AddWithValue("@note", uns.note);
                     myCommand.Parameters.AddWithValue("@rest", uns.rest);
+                    myCommand.Parameters.AddWithValue("@description", uns.description);
+                    myCommand.Parameters.AddWithValue("@img", uns.img);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();

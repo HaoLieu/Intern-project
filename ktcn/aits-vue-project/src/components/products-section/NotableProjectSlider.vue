@@ -90,7 +90,7 @@ export default {
   }
 
   span {
-    font-size: 35px;
+    font-size: 40px;
     color: orange;
     line-height: 1.6;
     word-spacing: 5px;
@@ -98,7 +98,7 @@ export default {
 
   #company {
     color: #5bc0de;
-    font-size: 45px;
+    font-size: 50px;
     font-weight: bold;
   }
 

@@ -1,6 +1,5 @@
 <template>
   <section class="home-section">
-
     <Swiper :slidesPerView="1" :loop="true" :autoplay="{
       delay: 5000,
       disableOnInteraction: false,
@@ -27,15 +26,6 @@
     <HomeBussinessPartner></HomeBussinessPartner>
     <HomeRecruitment></HomeRecruitment>
     <HomeNews></HomeNews>
-    <!-- <Transition name="toast" @before-enter="beforeEnter" @enter="enter" appear>
-      <div class="animated-block">
-        <h1>Hi</h1>
-        <div>
-          <h2>Hi2</h2>
-        </div>
-        <h3>Hi</h3>
-      </div>
-    </Transition> -->
   </section>
 </template>
 

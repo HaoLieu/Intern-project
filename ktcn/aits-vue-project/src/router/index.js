@@ -4,7 +4,6 @@ import AboutView from '../views/AboutView.vue'
 import ProductsView from '../views/ProductsView.vue'
 import NewsView from '../views/NewsView.vue'
 import ShareHolderView from '../views/ShareHolderView.vue'
-import MaitsView from '../views/MaitsView.vue'
 import ContactView from '../views/ContactView.vue'
 import RecruitmentView from '../views/RecruitmentView.vue'
 import LoginPage from '../components/back-end/LoginPage.vue'
@@ -13,7 +12,8 @@ import AitsBackEnd from '../components/back-end/AitsBackEnd.vue'
 import UnionBackEnd from '../components/back-end/UnionBackEnd.vue'
 import VnAirlinesBackEnd from '../components/back-end/VnAirlinesBackEnd.vue'
 import sportCultureBackEnd from '../components/back-end/SportCultureBackEnd.vue'
-// import TestRoute from '../components/TestRoute.vue'
+import GalleryBackEnd from '../components/back-end/GalleryBackEnd.vue'
+import NotFound from '../views/NotFoundView.vue'
 
 import AitsNewsDetail from '../components/news-section/AitsNewsDetail.vue'
 import UnionNewsDetail from '../components/news-section/UnionNewsDetail.vue'
@@ -72,11 +72,6 @@ const routes = [
     component: ShareHolderView
   },
   {
-    path: '/m-aits',
-    name: 'm-aits',
-    component: MaitsView
-  },
-  {
     path: '/tuyendung',
     name: 'tuyendung',
     component: RecruitmentView
@@ -115,6 +110,15 @@ const routes = [
     path: '/be/sportCultureBackEnd',
     name: 'sportCultureBackEnd',
     component: sportCultureBackEnd
+  },
+  {
+    path: '/be/gallery',
+    name: 'gallery',
+    component: GalleryBackEnd
+  },
+  {
+    path: '/:NotFound(.*)',
+    component: NotFound
   }
 ]
 
